@@ -1,5 +1,5 @@
 class Factory  
-    def return_obj(role)
+    def create_obj(role)
         if (role==admin)
             return CreateAdminService(params)
         elsif (role=="")
@@ -18,6 +18,7 @@ end
             @street = params[:street]
             @area = params[:area]
             @district = params[:district]
+            @role = params[:role]
         end
         
         def generate_cutomer_id()
@@ -27,14 +28,6 @@ end
             cutomer = CustomerTable(generate_cutomer_id(), street, area, district)
         end
     end
-       
-    # Electricity Board 
-    # CustomerEntity(
-    # 100
-    # street: abc
-    # area: xyz
-    # Dirstrict: efd)
-    # Ecommerce:
     
     class AddressValueAttributes
         def initialize(params)
@@ -61,7 +54,7 @@ end
         def initialize(params)
             @customer_id = params[:customer_id]
             @email = params[:email]
-            @is_admin = False
+            @role = params[:role]
             @address: [params[:Address]]
         end
         def generate_cutomer_id()
@@ -98,3 +91,5 @@ end
            customer_id
         end
     end
+
+new_user = Factory.create_obj(params[:role])
